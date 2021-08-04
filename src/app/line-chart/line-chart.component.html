@@ -1,0 +1,61 @@
+<div class="container-fluid text-center">
+    <h1>Line Chart</h1>
+    
+    <form class="search-form" [formGroup]="searchForm" (ngSubmit)="searchNow()">
+        <div class="row g-3 align-items-center">
+            <div class="col-auto">
+                <label for="BuildingId" class="col-form-label">Building :</label>
+            </div>
+            <div class="col-auto">
+                <select class="form-control" name="BuildingId" id="BuildingId" formControlName="BuildingId">
+                    <option value="">Select Building</option>
+                    <option *ngFor="let building of buildings" [value]="building.id">{{building.name}}</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <label for="ObjectId" class="col-form-label">Object :</label>
+            </div>
+            <div class="col-auto">
+                <select class="form-control" name="ObjectId" id="ObjectId" formControlName="ObjectId">
+                    <option value="">Select Object</option>
+                    <option *ngFor="let object of objects" [value]="object.id">{{object.name}}</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <label for="DataFieldId" class="col-form-label">Datafield :</label>
+            </div>
+            <div class="col-auto">
+                <select class="form-control" name="DataFieldId" id="DataFieldId" formControlName="DataFieldId">
+                    <option value="">Select Datafield</option>
+                    <option *ngFor="let dataField of dataFields" [value]="dataField.id">{{dataField.name}}</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <label for="DataFieldId" class="col-form-label">Datarange :</label>
+            </div>
+            <div class="col-auto">
+                <input type="text" matInput
+                    ngxDaterangepickerMd
+                    [locale]="{applyLabel: 'Confirm', format: 'DD-MM-YYYYTHH:mm:ss', displayFormat: 'DD-MM-YYYY hh:mm a'}"
+                    startKey="start"
+                    endKey="end"
+                    [ranges]="ranges"
+                    alwaysShowCalendars="true"
+                    timePicker="true"
+                    [(ngModel)]="dateRange"
+                    class="daterange"
+                    formControlName="DateRangePick"
+                    name="dateRange"/>
+            </div>
+            <div class="col-auto">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="container-fluid text-center">
+    <div>
+        <canvas class="canvas" id="myChart"></canvas>
+    </div>
+</div>

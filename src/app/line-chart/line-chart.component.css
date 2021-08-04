@@ -1,0 +1,14 @@
+.canvas{
+    display: block !important;
+    height: 70vh !important;
+    width: 95vw !important;
+    margin: auto;
+    margin-top: 20px;
+}
+.search-form{
+    display: inline-block;
+}
+.daterange{
+    width: 360px;
+    text-align: center;
+}
