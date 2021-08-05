@@ -30,6 +30,7 @@ export class LineChartComponent implements OnInit {
   
   canvas: any;
   ctx: any;
+  myChart : any;
 
   constructor(private _buildingService: BuildingService,
               private _objectService: ObjectService,
@@ -51,9 +52,12 @@ export class LineChartComponent implements OnInit {
   }
 
   loadChart(){
+    if (this.myChart) {
+      this.myChart.destroy();
+    }
     this.canvas = document.getElementById('myChart');
     this.ctx = this.canvas.getContext('2d');
-    let myChart = new Chart(this.ctx, {
+    this.myChart = new Chart(this.ctx, {
       type: 'line',
       data: {
           labels: this.xAxisData,
@@ -105,6 +109,8 @@ export class LineChartComponent implements OnInit {
   }
 
   getReadings(data : any){
+    this.xAxisData = [];
+    this.yAxisData = [];
     this._readingService.getReadings(data).subscribe(response => {
       this.xAxisData = response.map(response => response.timestamp);
       this.yAxisData = response.map(response => response.value);
